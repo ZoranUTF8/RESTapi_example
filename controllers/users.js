@@ -21,7 +21,7 @@ let usersData = [
 ];
 
 export const readUsers = (req, res) => {
-  res.send(usersData);
+  res.json(usersData);
 };
 
 export const readUser = (req, res) => {
@@ -29,7 +29,7 @@ export const readUser = (req, res) => {
 
   const foundUser = usersData.find((user) => id === user.id);
 
-  res.send(foundUser);
+  res.json(foundUser);
 };
 
 export const createUser = (req, res) => {
@@ -38,16 +38,15 @@ export const createUser = (req, res) => {
 
   usersData.push({ ...user, id: uuidv4() });
 
-  res.send(`User with the name: ${user.name} added.`);
+  res.json(`User with the name: ${user.name} added.`);
 };
 
 export const deleteUser = (req, res) => {
   const { id } = req.params;
 
   usersData = usersData.filter((user) => user.id !== id);
-  console.log(usersData);
 
-  res.send(`User deleted`);
+  res.json(`User deleted`);
 };
 
 export const updateUser = (req, res) => {
@@ -66,5 +65,5 @@ export const updateUser = (req, res) => {
     userData.age = age;
   }
 
-  res.send(userData);
+  res.json(userData);
 };
